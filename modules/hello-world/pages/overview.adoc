@@ -6,7 +6,7 @@
 
 = .NET Analytics SDK
 
-The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster from Java.
+The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster using C#.
 For connecting to a Couchbase Server Cluster -- self-managed, or Capella Operational --
 see our xref:dotnet-sdk:hello-world:overview.adoc[.NET Operational SDK].
 

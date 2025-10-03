@@ -21,86 +21,55 @@ Install and configure an xref:enterprise-analytics:intro:intro.adoc[Enterprise A
 // TODO: Link to https://docs.couchbase.com/columnar/admin/ip-allowed-list.html
 
 [#minimum-java-version]
-=== Minimum Java Version
+=== Minimum .NET Version
 
-The {name-sdk} requires Java 8 or later.
-We recommend using the most recent long-term support (LTS) version of OpenJDK.
-
-TIP: Remember to keep your Java installation up to date with the latest patches.
-
-[maven-project-template]
-== Maven Project Template
-
-The SDK's source code repository includes an 
-https://github.com/couchbaselabs/couchbase-analytics-jvm-clients/tree/main/couchbase-analytics-java-client/examples/maven-project-template[example Maven project]
-you can copy to get started quickly.
+The {name-sdk} requires .NET 8 or later.
+We recommend using the most recent long-term support (LTS) version of .NET.
 
 == Adding the SDK to an Existing Project
 
-Declare a dependency on the SDK using its xref:project-docs:sdk-full-installation.adoc[].
+Add the NuGet package to your `*.csproj` file, or add it using the command line:
 
-To see log messages from the SDK, xref:howtos:logging.adoc[include an SLF4J binding in your project].
+[source,shell]
+----
+dotnet add package Couchbase.AnalyticsClient
+----
+
+[source,xml]
+----
+<PackageReference Include="Couchbase.AnalyticsClient" Version="1.0.0" />
+----
+
+
 
 [quickstart]
 == Connecting and Executing a Query
 
-[source,java]
+[source,csharp]
 ----
-import com.couchbase.analytics.client.java.Cluster;
-import com.couchbase.analytics.client.java.Credential;
-import com.couchbase.analytics.client.java.QueryResult;
+using Couchbase.AnalyticsClient;
+using Couchbase.AnalyticsClient.HTTP;
+using Couchbase.AnalyticsClient.Options;
 
-import java.util.List;
+var credential = Credential.Create("username", "password");
 
-public class Example {
-  public static void main(String[] args) {
-    var connectionString = "https://<your_hostname>:" + PORT;
-    var username = "...";
-    var password = "...";
+var cluster = Cluster.Create(
+    connectionString: "https://analytics.my-couchbase.example.com:18095",
+    credential: credential)
+);
 
-    try (Cluster cluster = Cluster.newInstance(
-      connectionString,
-      Credential.of(username, password),
-      // The third parameter is optional.
-      // This example sets the default query timeout to 2 minutes.
-      clusterOptions -> clusterOptions
-        .timeout(it -> it.queryTimeout(Duration.ofMinutes(2)))
-    )) {
+var result = await cluster.ExecuteQueryAsync("SELECT i from ARRAY_RANGE(1, 100) AS i;").ConfigureAwait(false);
 
-      // Execute a query and buffer all result rows in client memory.
-      QueryResult result = cluster.executeQuery("select 1");
-      result.rows().forEach(row -> System.out.println("Got row: " + row));
-
-      // Execute a query and process rows as they arrive from server.
-      cluster.executeStreamingQuery(
-          "select 1",
-          row -> System.out.println("Got row: " + row)
-      );
-
-      // Execute a streaming query with positional arguments.
-      cluster.executeStreamingQuery(
-        "select ?=1",
-        row -> System.out.println("Got row: " + row),
-        options -> options
-          .parameters(List.of(1))
-      );
-
-      // Execute a streaming query with named arguments.
-      cluster.executeStreamingQuery(
-        "select $foo=1",
-        row -> System.out.println("Got row: " + row),
-        options -> options
-          .parameters(Map.of("foo", 1))
-      );
-    }
-  }
+await foreach (var row in result.ConfigureAwait(false))
+{
+    Console.WriteLine(row.ContentAs<JsonElement>());
 }
 ----
 
 
 === Connection String
 
-The `connStr` in the above example should take the form of "https://<your_hostname>:" + PORT 
+The `connectionString` in the above example should take the form of "https://<your_hostname>:" + PORT 
 
 include::{version-common}@analytics-sdk:shared:partial$connstr.adoc[tag=connstr]
 
