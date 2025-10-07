@@ -4,8 +4,8 @@
 
 == Contributing
 
-Couchbase welcomes community contributions to the Java Analytics SDK.
-The https://github.com/couchbaselabs/couchbase-analytics-jvm-clients/tree/main[Java SDK source code^] is available on GitHub.
-Please see the https://github.com/couchbase/couchbase-jvm-clients/blob/master/CONTRIBUTING.md[CONTRIBUTING^] file for further information.
+Couchbase welcomes community contributions to the .NET Analytics SDK.
+The https://github.com/couchbaselabs/analytics-dotnet-client/tree/main[.NET SDK source code^] is available on GitHub.
+Please see the https://github.com/couchbaselabs/analytics-dotnet-client/blob/main/CONTRIBUTING.md[CONTRIBUTING^] file for further information.
 
 include::{version-common}@analytics-sdk:shared:partial$contrib.adoc[tag=contrib]

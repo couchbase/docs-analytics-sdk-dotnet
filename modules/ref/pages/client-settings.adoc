@@ -11,33 +11,30 @@ Client settings can be configured by writing code, or by including parameters in
 [#configure-with-code]
 == Configure with Code
 
-To configure SDK client settings by writing code, provide a configuration callback when creating the `Cluster` instance. Here's an example that configures several settings by passing the optional third argument to `Cluster.newInstance()`:
+To configure SDK client settings by writing code, provide a configuration when creating the `Cluster` instance. Here's an example that configures several settings by passing the optional third argument to `Cluster.Create()`:
 
-[source,java]
+[source,csharp]
 ----
-Cluster cluster = Cluster.newInstance(
-    connectionString,
-    Credential.of(username, password),
-    clusterOptions -> clusterOptions // <1>
-        .timeout(timeoutOptions -> timeoutOptions // <2>
-            .connectTimeout(Duration.ofSeconds(30))
-            .queryTimeout(Duration.ofMinutes(2))
-        ) // <3>
-        .security(securityOptions -> securityOptions // <4>
-            .cipherSuites(List.of("MY_APPROVED_CIPHER_SUITE"))
-        )
+var credential = Credential.Create("username", "password");
+
+var cluster = Cluster.Create(
+    connectionString: "https://analytics.my-couchbase.example.com:18095?max_retries=5",
+    credential: credential,
+    configureOptions: options => options
+        .WithTimeoutOptions(timeoutOpts => timeoutOpts
+            .WithQueryTimeout(TimeSpan.FromSeconds(15)))
+        .WithSecurityOptions(securityOpts => securityOpts
+            .WithTrustOnlyCapella())
 );
 ----
-<1> The parameter type is `Consumer<ClusterOptions>`.
+<1> The parameter type is `Func<ClusterOptions, ClusterOptions>`.
 The SDK passes a `ClusterOptions` object to your consumer.
 Configure the options by calling methods on the given object.
 
-<2> The same callback pattern extends to the sub-builders for different categories. For example, `ClusterOptions.timeout()` takes a `Consumer<TimeoutOptions>`.
+<2> The `*Options` classes are immutable record types.
+Every method returns the same record, allowing for method call chaining, but returns a new copy.
 
-<3> The `*Options` classes are mutable builders.
-Every method returns the same builder, allowing for method call chaining.
-
-<4> Most users won't need to configure security settings, but it's shown here for completeness.
+<3> Most users won't need to configure security settings, but it's shown here for completeness.
 
 TIP: You don't need to call every method in the above example; call only the methods where you want to override the client setting's default value.
 
@@ -65,7 +62,7 @@ TIP: If your application reads the connection string from a config file (or othe
 
 For client settings that represent durations, the connection string parameter's value is specified using the following format:
 
-> A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+> A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms", "-1.5h" or "2h45m". Valid time units are "us", "ms", "s", "m", "h".
 
 The SDK rejects non-positive timeout durations.
 
@@ -128,7 +125,7 @@ Leave this at the default value unless you have special security compliance requ
 
 When specifying this as a connection string parameter, the value is a comma-delimited list with no whitespace.
 
-Consult your JVM reference documentation for a list of supported cipher suite names.
+Consult your .NET SDK reference documentation for a list of supported cipher suite names.
 
 |[[security.trust_only_non_prod]]`security.trust_only_non_prod`
 |N/A
@@ -156,36 +153,23 @@ Don't do this unless connecting to a server running locally on your development 
 [#deserializer]
 === Deserializer
 
-The SDK uses a component called a `Deserializer` to convert query result rows into Java objects. The default implementation is `JacksonDeserializer`, a thin wrapper around a https://github.com/FasterXML/jackson[Jackson] `ObjectMapper`.
+The SDK uses a component called a `Deserializer` to convert query result rows into .NET objects. The default implementation is `StjJsonDeserializer`, a thin wrapper using System.Text.Json.
 
-By default, a Jackson `ObjectMapper` throws an exception if it encounters a JSON field that does not match the structure of the target class.
-Here's an example that shows how to configure the `ObjectMapper` with different behavior:
+By default, a System.Text.Json `JsonSerializer` throws an exception if it encounters a JSON field that does not match the structure of the target class.
+Here's an example that shows how to configure the `JsonSerializer` with different behavior:
 
-[source,java]
+[source,csharp]
 ----
-ObjectMapper mapper = JsonMapper.builder()
-    .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES) // <1>
-    .build();
-
-Cluster cluster = Cluster.connect(
+var cluster = Cluster.Create(
     connectionString,
-    Credential.of(username, password),
+    Credential.Create(username, password),
     clusterOptions -> clusterOptions
-        .deserializer(new JacksonDeserializer(mapper))
+        .WithDeserializer(new StjJsonDeserializer())
 );
 ----
-<1> Ignore unknown properties instead of throwing exception.
 
 This cluster option specifies the _default_ deserializer.
 You can override the deserializer for a specific query by setting the `deserializer` query option when executing the query.
 
-TIP: If you prefer not to work with the `Deserializer` interface, you can always call `row.bytes()` to get a row's content as a raw byte array.
+TIP: If you prefer not to work with the `Deserializer` interface, you can always call `row.ContentAs<byte[]>()` to get a row's content as a raw byte array.
 Then you can process the byte array however you like.
-
-
-////
-==== Custom deserializers
-
-Implement the `Deserializer` interface to add support for other JSON processing libraries.
-The SDK source code repository includes https://github.com/couchbase/couchbase-jvm-clients/tree/master/columnar-java-client/src/test/java/com/couchbase/columnar/client/java/examples/codec[examples for Gson and DSL-JSON] that you can copy into your own project or use as a starting point for other libraries.
-////
