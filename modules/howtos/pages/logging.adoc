@@ -14,10 +14,21 @@ An `ILoggerFactory` can be provided to the `ClusterOptions` when creating a `Clu
 
 [example-usage]
 .Using Serilog
-[NOTE]
+
 ====
 
 Using `Serilog` and wiring it to the SDK's `Microsoft.Extensions.Logging` API:
+
+Add the following dependencies to your project, as required:
+
+[source,xml]
+----
+<PackageReference Include="Microsoft.Extensions.Logging" />
+<PackageReference Include="Serilog" />
+<PackageReference Include="Serilog.Extensions.Logging" />
+<PackageReference Include="Serilog.Sinks.Console" />
+<PackageReference Include="Serilog.Sinks.File" />
+----
 
 [source,csharp]
 ----

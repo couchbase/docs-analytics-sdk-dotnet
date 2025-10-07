@@ -9,26 +9,20 @@ Plus notes on Cloud, networks, and AWS Lambda.
 {description}
 
 
+== Platform Compatibility
+
+
+=== .NET Version Compatibility
+
 The {sdk_dot_minor} {name-sdk} requires .NET 8 or later to be installed.
 We recommend using the most recent long-term support (LTS) version of .NET.
 
 TIP: Remember to keep your .NET installation up to date with the latest patches.
 
 
-== Platform Compatibility
-
-
-=== .NET Version Compatibility
-
-include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=dotnet-version]
-
-
-
-
-
 === OS Compatibility
 
-include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=os-compat-dotnet]
+include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=os-compat]
 
 
 
