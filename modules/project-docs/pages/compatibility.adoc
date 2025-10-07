@@ -46,7 +46,7 @@ As such, the latest Couchbase Columnar SDKs are tested against the latest versio
 Where older versions of the {name-sdk} pre-date significant new features in Analytics, those differences will be noted in this section.
 
 
-TIP: Connecting to a xref:enterprise-analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
+TIP: Connecting to a xref:analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
 ////
 
 

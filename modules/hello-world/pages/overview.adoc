@@ -10,7 +10,7 @@ The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster 
 For connecting to a Couchbase Server Cluster -- self-managed, or Capella Operational --
 see our xref:dotnet-sdk:hello-world:overview.adoc[.NET Operational SDK].
 
-TIP: Connecting to a xref:enterprise-analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
+TIP: Connecting to a xref:analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
 
 {empty} +
 

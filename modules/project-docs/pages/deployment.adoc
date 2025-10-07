@@ -24,7 +24,7 @@ We always recommend the xref::analytics-sdk-release-notes.adoc#latest-release[la
 This not only contains the latest security updates and bug fixes, but will be compatible with the latest Enterprise Analytics release -- Capella always runs a recent version of Enterprise Analytics.
 
 
-TIP: Connecting to a xref:enterprise-analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
+TIP: Connecting to a xref:analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
 
 
 Before deploying, take note of any xref:compatibility.adoc[compatibility] issues for the language platform and underlying OS.
