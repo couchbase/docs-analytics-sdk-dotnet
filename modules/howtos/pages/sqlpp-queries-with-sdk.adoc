@@ -84,7 +84,7 @@ await foreach (var row in result.ConfigureAwait(false))
 }
 ----
 
-WARNING: Helper methods `WithNamedParameter` and `WithPositionalParameter` take 1 parameter, and add it to the existing collection in the options. The methods `WithNamedParameters` and `WithPositionalParameters` take a collection of parameters and replace all existing.
+WARNING: Helper methods `WithNamedParameter` and `WithPositionalParameter` take 1 parameter, and add it to the existing collection in the options. The methods `WithNamedParameters` and `WithPositionalParameters` take a collection of parameters, and replace all the parameters in the existing collection.
 
 
 == Further Information
