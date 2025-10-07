@@ -30,6 +30,7 @@ any changes to expected behavior are noted in the release notes that follow.
 === Version 1.0.0 (7 October 2025)
 
 https://docs.couchbase.com/sdk-api/analytics-dotnet-client-1.0.0[API Reference]
+https://www.nuget.org/packages/Couchbase.AnalyticsClient/1.0.0[NuGet Package]
 
 This is the first General Availability (GA) release of the new Analytics .NET SDK. 
 It supports executing queries against Enterprise Analytics clusters, with additional features planned for future releases.
