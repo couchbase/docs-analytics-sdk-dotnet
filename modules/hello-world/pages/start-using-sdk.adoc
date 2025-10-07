@@ -20,7 +20,7 @@ Install and configure an xref:enterprise-analytics:intro:intro.adoc[Enterprise A
 // After creating the cluster, add your IP address to the list of allowed IP addresses.
 // TODO: Link to https://docs.couchbase.com/columnar/admin/ip-allowed-list.html
 
-[#minimum-java-version]
+[#minimum-dotnet-version]
 === Minimum .NET Version
 
 The {name-sdk} requires .NET 8 or later.
