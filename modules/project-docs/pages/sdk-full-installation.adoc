@@ -1,5 +1,5 @@
-=== Install the SDK
-:page-toclevels: 1
+= Install the SDK
+:page-toclevels: 2
 :description: How to install the {name-sdk} from NuGet.
 :page-partial:
 
@@ -17,12 +17,14 @@ Couchbase publishes all stable artifacts to https://www.nuget.org/profiles/couch
 Install using your preferred method:
 
 === .NET CLI
+
 [source,shell,subs="attributes+"]
 ----
 dotnet add package Couchbase.AnalyticsClient --version {sdk_current_version}
 ----
 
 === Add to .csproj
+
 [source,xml,subs="attributes+"]
 ----
 <ItemGroup>
