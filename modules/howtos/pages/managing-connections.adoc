@@ -55,9 +55,9 @@ include::{version-common}@analytics-sdk:shared:partial$connstr.adoc[tag=more-con
 
 
 
-.Connection string with two parameters (TimeSpan in milliseconds)
+.Connection string with two parameters
 ----
-http://localhost:8095?timeout.connect_timeout=30000&timeout.query_timeout=120000
+http://localhost:8095?timeout.connect_timeout=30s&timeout.query_timeout=2m
 ----
 
 The full list of recognized parameters is documented in the xref:ref:client-settings.adoc[client settings reference].
