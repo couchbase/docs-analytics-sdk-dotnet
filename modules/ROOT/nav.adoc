@@ -9,7 +9,7 @@
 // *** https://docs-archive.couchbase.com/home/index.html[Older Versions Archive^]
 ** xref:project-docs:compatibility.adoc[]
 // *** xref:project-docs:third-party-integrations.adoc[]
-** xref:project-docs:sdk-full-installation.adoc[]
+** xref:project-docs:sdk-full-installation.adoc[Full Installation]
 // *** xref:hello-world:platform-help.adoc[]
 ** xref:howtos:logging.adoc[]
 ** xref:project-docs:get-involved.adoc[]

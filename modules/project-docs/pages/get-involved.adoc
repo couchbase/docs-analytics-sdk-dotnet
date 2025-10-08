@@ -5,7 +5,7 @@
 == Contributing
 
 Couchbase welcomes community contributions to the .NET Analytics SDK.
-The https://github.com/couchbaselabs/analytics-dotnet-client/tree/main[.NET SDK source code^] is available on GitHub.
+The https://github.com/couchbaselabs/analytics-dotnet-client/[.NET SDK source code^] is available on GitHub.
 Please see the https://github.com/couchbaselabs/analytics-dotnet-client/blob/main/CONTRIBUTING.md[CONTRIBUTING^] file for further information.
 
 include::{version-common}@analytics-sdk:shared:partial$contrib.adoc[tag=contrib]
