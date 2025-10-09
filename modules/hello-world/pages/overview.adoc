@@ -81,7 +81,7 @@ Useful resources to help support your development experience with Columnar and t
 
 [.column]
 .Reference
-* https://docs.couchbase.com/sdk-api/analytics-dotnet-client-1.0.0/[API Reference]
+* https://docs.couchbase.com/sdk-api/analytics-dotnet-client-1.0.1/[API Reference]
 * xref:ref:client-settings.adoc[]
 * xref:ref:error-codes.adoc[]
 * xref:ref:glossary.adoc[Glossary]
