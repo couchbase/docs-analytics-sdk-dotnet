@@ -1,5 +1,6 @@
 = Querying with {sqlpp}
 :description: You can query for documents in Couchbase using the {sqlpp} query language, a language based on SQL, but designed for structured and flexible JSON documents.
+:page-toclevels: 2
 // :page-aliases: n1ql-query.adoc,n1ql-queries-with-sdk.adoc
 // :page-aliases: ROOT:document-operations.adoc,ROOT:documents-creating,ROOT:documents-updating,ROOT:documents-retrieving,ROOT:documents-deleting,n1ql-queries-with-sdk.adoc
 
@@ -85,6 +86,29 @@ await foreach (var row in result.ConfigureAwait(false))
 ----
 
 WARNING: Helper methods `WithNamedParameter` and `WithPositionalParameter` take 1 parameter, and add it to the existing collection in the options. The methods `WithNamedParameters` and `WithPositionalParameters` (note the plural) take a collection of parameters, and replace all the parameters in the existing collection.
+
+
+
+== Query Options
+
+The query service provides an array of options to customize your query.
+The following table lists them all:
+
+.Available Query Options
+[options="header"]
+|====
+| Name       | Description
+| `bool AsStreaming { get; init; }` | If true, the IQueryResult will be returned as a streaming result.
+| `string ClientContextId { get; init; }` | The `ClientContextId` to be used for the query request. Used to identify the query in logs and profiles. If none is provided, a new GUID will be generated.
+| `IDeserializer? Deserializer { get; init; }` | Used to deserialize query rows. Default to `StjJsonDeserializer`
+| `Dictionary<string, object> NamedParameters { get; init; }` | Named parameters for the query request. Use `WithNamedParameters(Dictionary<string, object>)` or `WithNamedParameter(string, object)` to create updated copies.
+| `List<object> PositionalParameters { get; init; }` | Positional parameters for the query request. Use `WithPositionalParameters(IEnumerable<object>)` or `WithPositionalParameter(object)` to create updated copies.
+| `Dictionary<string, object> Raw { get; init; }` | Raw parameters passed directly to the analytics service for advanced options. Use `WithRawParameters(Dictionary<string, object>)` or `WithRaw(string, object)` to create updated copies.
+| `bool? ReadOnly { get; init; }` | Specifies that this query should be executed in read-only mode, disabling the ability for the query to make any changes to the data.
+| `QueryScanConsistency? ScanConsistency { get; init; }` | The scan consistency for the query request.
+| `TimeSpan? Timeout { get; init; }` | Sets the overall timeout for the query request. If unset, the default `TimeoutOptions`'s `QueryTimeout` will be used. Note that if a `CancellationToken` is used on the query call, it may trigger before this timeout.
+|====
+
 
 
 == Further Information
