@@ -35,9 +35,9 @@ Add the NuGet package to your `*.csproj` file, or add it using the command line:
 dotnet add package Couchbase.AnalyticsClient
 ----
 
-[source,xml]
+[source,xml,subs="+attributes"]
 ----
-<PackageReference Include="Couchbase.AnalyticsClient" Version="1.0.1" />
+<PackageReference Include="Couchbase.AnalyticsClient" Version="{sdk_current_version}" />
 ----
 
 
