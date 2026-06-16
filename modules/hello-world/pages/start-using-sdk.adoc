@@ -83,11 +83,10 @@ The SDK supports each stage of this information flow:
 
 `cluster.StartQueryAsync()` → `QueryHandle` → `QueryStatus` → `QueryResultsHandle`
 
-
 .Server Asynchronous API Example
 [source,csharp]
 ----
-include::devguide:example$dotnet/src/ServerAsync.cs[indent=0,tag=server-async]
+include::devguide:example$dotnet/ServerAsync.cs[indent=0,tag=server-async]
 ----
 
 === Connection String
