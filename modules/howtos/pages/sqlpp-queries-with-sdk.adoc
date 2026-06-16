@@ -1,8 +1,6 @@
 = Querying with {sqlpp}
-:description: You can query for documents in Couchbase using the {sqlpp} query language, a language based on SQL, but designed for structured and flexible JSON documents.
+:description: You can query for documents in Couchbase using the {sqlpp} query language -- a language based on SQL, but designed for structured and flexible JSON documents.
 :page-toclevels: 2
-// :page-aliases: n1ql-query.adoc,n1ql-queries-with-sdk.adoc
-// :page-aliases: ROOT:document-operations.adoc,ROOT:documents-creating,ROOT:documents-updating,ROOT:documents-retrieving,ROOT:documents-deleting,n1ql-queries-with-sdk.adoc
 
 
 [abstract]
@@ -32,6 +30,16 @@ Create a collection to work upon by xref:columnar:intro:examples.adoc#travel-sam
 
 
 == Querying Your Dataset
+
+
+[TIP]
+.API Enhancements & Async
+====
+The 1.1 {name-sdk} adds support for JWT and client certificate authentication, as well as a new "async" poll-based API that uses request handles to fetch results, introduced in the 2.2 release of self-managed Enterprise Analytics Server, and eliminating the need for long-running server connections.
+
+The examples in this section are for the standard API, working with all 2.x releases of Enterprise Analytics (with Server Async examples following in the <<#server-asynchronous-api,Server Async section>>).
+Note, you will still be able to use this API with 2.2+ releases of Enterprise Analytics, in addition to the new API.
+====
 
 
 Execute a query and buffer all result rows in client memory:
@@ -89,6 +97,23 @@ WARNING: Helper methods `WithNamedParameter` and `WithPositionalParameter` take 
 
 
 
+== Server Asynchronous API
+
+In the 2.2 release, the Enterprise Analytics Server adds an asynchronous request API.
+The SDK will send a request, poll for results, and then fetch once the result is available.
+The SDK supports each stage of this information flow:
+
+`cluster.start_query()` → `QueryHandle` → `QueryStatus` → `QueryResultsHandle`
+
+
+.Server Asynchronous API Example
+[source,csharp]
+----
+include::devguide:example$dotnet/src/ServerAsync.cs[indent=0,tag=server-async]
+----
+
+
+
 == Query Options
 
 The query service provides an array of options to customize your query.
@@ -114,7 +139,7 @@ The following table lists them all:
 == Further Information
 
 The xref:server:analytics:1_intro.adoc[{sqlpp} for Analytics Reference]
-offers a complete guide to the SQL++ language for both of our analytics services, including all of the latest additions.
+offers a complete guide to the {sqlpp} language for both of our analytics services, including all of the latest additions.
 
 
 
