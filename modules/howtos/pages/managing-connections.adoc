@@ -39,10 +39,7 @@ The simplest way to create a `Cluster` object is to call `Cluster.Create()` with
 [source,csharp]
 ----
 var credential = Credential.Create("username", "password");
-
-var cluster = Cluster.Create(
-    connectionString: "https://analytics.my-couchbase.example.com:18095",
-    credential: credential);
+public static Cluster Create(string connectionString, ICredential credential);
 ----
 
 NOTE: Capella's root certificate is *not* signed by a well known Certificate Authority.
@@ -68,11 +65,8 @@ From the 1.1 SDK (with Enterprise Analytics Server 2.2+) JWT is supported.
 
 [source,csharp]
 ----
-var credential = Credential.Create(JwtCredential);
-var cluster = Cluster.Create(
-    connectionString: "https://analytics.my-couchbase.example.com:18095",
-    credential: credential)
-);
+var credential = JwtCredential.Create(token);
+public static Cluster Create(string connectionString, ICredential credential);
 ----
 
 
@@ -87,17 +81,13 @@ The SDK reads the certificate and private key from a `PKCS#12` file:
 
 [source,csharp]
 ----
-var credential = Credential.Create(CertificateCredential);
-
-var cluster = Cluster.Create(
-    connectionString: "https://analytics.my-couchbase.example.com:18095",
-    credential: credential)
+var credential = CertificateCredential.FromPem(certPath, keyPath);
+public static Cluster Create(string connectionString, ICredential credential);
 ----
 
 
 
 == Local Development
-
 
 We strongly recommend that the client and server xref:project-docs:compatibility.adoc#network-requirements[are in the same LAN-like environment] (for example, the same AWS Region).
 // As this may not always be possible during development, read the guidance on working with xref:ref:client-settings.adoc#commonly-used-options[constrained network environments].
