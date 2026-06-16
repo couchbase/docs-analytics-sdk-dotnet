@@ -42,8 +42,6 @@ var credential = Credential.Create("username", "password");
 public static Cluster Create(string connectionString, ICredential credential);
 ----
 
-NOTE: Capella's root certificate is *not* signed by a well known Certificate Authority.
-However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 == Connection Strings
 
@@ -85,6 +83,14 @@ var credential = CertificateCredential.FromPem(certPath, keyPath);
 public static Cluster Create(string connectionString, ICredential credential);
 ----
 
+
+== Certificate Authority
+
+To make a TLS connection to an Enterprise Analytics cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration --
+the platform's defaults are automatically trusted.
+
+The cluster's root certificate just needs to be issued by a CA whose certificate is in your system trust store.
+This includes well known CAs (including GoDaddy and Verisign), plus any other CA certificates that you wish to add.
 
 
 == Local Development
