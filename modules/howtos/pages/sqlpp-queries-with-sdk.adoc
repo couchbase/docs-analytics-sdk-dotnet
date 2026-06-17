@@ -136,5 +136,5 @@ The following table lists them all:
 
 == Further Information
 
-The xref:-analytics:sqlpp:1_intro.adoc[{sqlpp} for Analytics Reference]
+The xref:analytics:sqlpp:1_intro.adoc[{sqlpp} for Analytics Reference]
 offers a complete guide to the {sqlpp} language for both of our analytics services, including all of the latest additions.
