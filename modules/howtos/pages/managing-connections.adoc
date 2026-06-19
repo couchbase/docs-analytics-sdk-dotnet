@@ -83,6 +83,9 @@ var credential = CertificateCredential.FromPem(certPath, keyPath);
 public static Cluster Create(string connectionString, ICredential credential);
 ----
 
+Typically, JWTs have a short validity period.
+Renew JWTs with `Cluster.UpdateCredential(ICredential newCredential)`.
+
 
 == Certificate Authority
 
