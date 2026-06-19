@@ -1,10 +1,10 @@
-= .NET Analytics SDK
+= .NET Analytics SDK {sdk_dot_minor}
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
 :!sectids:
 
 
-= .NET Analytics SDK
+= .NET Analytics SDK {sdk_dot_minor}
 
 The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster using C#.
 For connecting to a Couchbase Server Cluster -- self-managed, or Capella Operational --

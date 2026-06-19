@@ -39,14 +39,9 @@ The simplest way to create a `Cluster` object is to call `Cluster.Create()` with
 [source,csharp]
 ----
 var credential = Credential.Create("username", "password");
-
-var cluster = Cluster.Create(
-    connectionString: "https://analytics.my-couchbase.example.com:18095",
-    credential: credential);
+public static Cluster Create(string connectionString, ICredential credential);
 ----
 
-NOTE: Capella's root certificate is *not* signed by a well known Certificate Authority.
-However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 == Connection Strings
 
@@ -55,17 +50,53 @@ include::{version-common}@analytics-sdk:shared:partial$connstr.adoc[tag=more-con
 
 
 
-.Connection string with two parameters
+== Authentication by Credential
+
+Similarly to the `Authenticator` abstraction in Couchbase Operational SDKs, Analytics SDKs use a `Credential` abstraction covering regular password authentication (Basic Access Authentication), JSON Web Tokens (JWT), and Client Certificates through mTLS.
+
+Basic Access Authentication is shown in the example <<#connecting-to-a-cluster,above>>.
+
+
+=== JSON Web Tokens (JWT)
+
+From the 1.1 SDK (with Enterprise Analytics Server 2.2+) JWT is supported.
+
+[source,csharp]
 ----
-http://localhost:8095?timeout.connect_timeout=30s&timeout.query_timeout=2m
+var credential = JwtCredential.Create(token);
+public static Cluster Create(string connectionString, ICredential credential);
 ----
 
-The full list of recognized parameters is documented in the xref:ref:client-settings.adoc[client settings reference].
 
+=== Certificate Authentication
+
+From the 1.1 Analytics SDK (with Enterprise Analytics Server 2.2+) certificate authentication is supported.
+A conceptual and architectural overview of Enterprise Analytics's support of X.509 certificates is provided in the xref:{version-server}@server:learn:security/certificates.adoc[Server certificates docs].
+Practical information on handling certificates can be found in the xref:{version-ea}@enterprise-analytics:manage:manage-security/manage-certificates.adoc[Enterprise Analytics certificates docs].
+
+The Analytics SDK authenticates the client during the TLS handshake.
+The SDK reads the certificate and private key from a `PKCS#12` file:
+
+[source,csharp]
+----
+var credential = CertificateCredential.FromPem(certPath, keyPath);
+public static Cluster Create(string connectionString, ICredential credential);
+----
+
+Typically, JWTs have a short validity period.
+Renew JWTs with `Cluster.UpdateCredential(ICredential newCredential)`.
+
+
+== Certificate Authority
+
+To make a TLS connection to an Enterprise Analytics cluster with a root certificate issued by a trusted CA (Certificate Authority), you do not need to add this to your configuration --
+the platform's defaults are automatically trusted.
+
+The cluster's root certificate just needs to be issued by a CA whose certificate is in your system trust store.
+This includes well known CAs (including GoDaddy and Verisign), plus any other CA certificates that you wish to add.
 
 
 == Local Development
-
 
 We strongly recommend that the client and server xref:project-docs:compatibility.adoc#network-requirements[are in the same LAN-like environment] (for example, the same AWS Region).
 // As this may not always be possible during development, read the guidance on working with xref:ref:client-settings.adoc#commonly-used-options[constrained network environments].
