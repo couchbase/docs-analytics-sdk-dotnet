@@ -76,7 +76,7 @@ await foreach (var row in result.ConfigureAwait(false))
 
 
 
-[[#server-asynchronous-api]]
+[[server-asynchronous-api]]
 === {async-server-api-feature-name}
 
 Enterprise Analytics 2.2 introduces an asynchronous request API.
