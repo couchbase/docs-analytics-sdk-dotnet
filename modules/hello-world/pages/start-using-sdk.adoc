@@ -81,9 +81,6 @@ await foreach (var row in result.ConfigureAwait(false))
 
 Enterprise Analytics 2.2 introduces an asynchronous request API.
 The SDK sends a request, polls for results, and then fetches once the result is available.
-The SDK supports each stage of this information flow:
-
-`cluster.StartQueryAsync()` → `QueryHandle` → `QueryStatus` → `QueryResultsHandle`
 
 .Server Asynchronous API Example
 [source,csharp]
