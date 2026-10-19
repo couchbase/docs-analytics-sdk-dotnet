@@ -30,7 +30,7 @@ include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=os-compat
 
 === Network Requirements
 
-include::{sdk_api}@@analytics-sdk:shared:partial$network-requirements.adoc[tag=lan-like]
+include::{sdk_api}@analytics-sdk:shared:partial$network-requirements.adoc[tag=lan-like]
 
 
 
