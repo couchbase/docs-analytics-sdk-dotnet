@@ -6,17 +6,17 @@
 
 = .NET Analytics SDK {sdk_dot_minor}
 
-The .NET Analytics SDK allows you to connect to an Enterprise Analytics cluster using C#.
+The .NET Analytics SDK allows you to connect to an Operational Insights cluster using C#.
 For connecting to a Couchbase Server Cluster -- self-managed, or Capella Operational --
 see our xref:dotnet-sdk:hello-world:overview.adoc[.NET Operational SDK].
 
-TIP: Connecting to a xref:analytics:intro:intro.adoc[_Capella_ Analytics] cluster from .NET is not currently possible.
+TIP: Connecting to a xref:analytics:intro:intro.adoc[Operational Insights _Capella_] cluster from .NET is not currently possible.
 
 {empty} +
 
 == icon:database[] Using Your Analytics Cluster
 
-How-to guides and tutorials to help you start your development journey with Enterprise Analytics and the .NET SDK.
+How-to guides and tutorials to help you start your development journey with Operational Insights and the .NET SDK.
 
 ++++
 <div class="card-row three-column-row">
@@ -25,7 +25,7 @@ How-to guides and tutorials to help you start your development journey with Ente
 [.column]
 .Getting Started
 * xref:hello-world:start-using-sdk.adoc[]
-* xref:howtos:managing-connections.adoc[Connecting to Enterprise Analytics]
+* xref:howtos:managing-connections.adoc[Connecting to Operational Insights]
 * xref:howtos:sqlpp-queries-with-sdk.adoc[]
 
 ////
@@ -48,7 +48,7 @@ How-to guides and tutorials to help you start your development journey with Ente
 
 == icon:graduation-cap[] Learn
 
-Take a deep-dive into the SDK concept material and learn more about Enterprise Analytics.
+Take a deep-dive into the SDK concept material and learn more about Operational Insights.
 
 ++++
 <div class="card-row three-column-row">
