@@ -30,7 +30,7 @@ include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=os-compat
 
 === Network Requirements
 
-include::1.1@analytics-sdk:shared:partial$network-requirements.adoc[tag=lan-like]
+include::{sdk_api}@@analytics-sdk:shared:partial$network-requirements.adoc[tag=lan-like]
 
 
 
@@ -38,7 +38,7 @@ include::1.1@analytics-sdk:shared:partial$network-requirements.adoc[tag=lan-like
 == Operational Insights Cluster Compatibility
 
 
-include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=cluster-compat]
+include::1.1@analytics-sdk:shared:partial$compatibility.adoc[tag=cluster-compat]
 
 
 
