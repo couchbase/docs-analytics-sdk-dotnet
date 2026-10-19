@@ -35,6 +35,12 @@ include::{sdk_api}@analytics-sdk:shared:partial$network-requirements.adoc[tag=la
 
 
 
+== Operational Insights Cluster Compatibility
+
+
+include::{sdk_api}@analytics-sdk:shared:partial$compatibility.adoc[tag=cluster-compat]
+
+
 
 ////
 == Capella Analytics Compatibility
