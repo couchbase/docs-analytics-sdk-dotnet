@@ -4,7 +4,7 @@
 :!sectids:
 
 
-= .NET Analytics SDK
+= .NET Analytics SDK 1.0
 
 The .NET Analytics SDK allows you to connect to an Operational Insights cluster using C#.
 For connecting to a Couchbase Server Cluster -- self-managed, or Capella Operational --
